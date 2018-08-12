@@ -1,0 +1,2 @@
+template_path: templates/bootstrap.yaml
+stack_name: bootstrap

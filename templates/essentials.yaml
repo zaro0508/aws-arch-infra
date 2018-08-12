@@ -1,0 +1,28 @@
+Description: Essential resources common to all AWS accounts
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  # Bucket for lambda artifacts
+  S3LambdaArtifactsBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Delete
+    Properties:
+      AccessControl: PublicRead
+  S3LambdaArtifactsBucketPolicy:
+    Type: "AWS::S3::BucketPolicy"
+    Properties:
+      Bucket: !Ref S3LambdaArtifactsBucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Sid: "AllowPublicRead"
+            Effect: "Allow"
+            Principal:
+              AWS: "*"
+            Action: "s3:GetObject"
+            Resource: !Sub "arn:aws:s3:::${S3LambdaArtifactsBucket}/*"
+Outputs:
+  S3LambdaArtifactsBucket:
+    Value: !Ref S3LambdaArtifactsBucket
+    Export:
+      Name: !Sub '${AWS::Region}-${AWS::StackName}-S3LambdaArtifactsBucket'

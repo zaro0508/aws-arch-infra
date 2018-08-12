@@ -1,0 +1,98 @@
+#This template is used to bootstrap resources for an AWS account.
+#The resources in this template only need to be created once.
+Description: Bootstrap resources for new AWS account
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  # !! IMPORTANT !! - AWS API will refuse to remove users that have attached resources.
+  # Therefore you must do the following before deleting them from this file:
+  # 1. Detach or remove the following user resources: login profile, attached
+  #    MFA device, access-keys, ssh-keys, and policies.
+  # 2. Detach the user from all groups.
+  TravisUserAccessKey:
+    Type: 'AWS::IAM::AccessKey'
+    Properties:
+      UserName: !Ref TravisUser
+  TravisUser:
+    Type: 'AWS::IAM::User'
+    Properties:
+      Groups:
+        - !Ref CiGroup
+  CiGroup:
+    Type: 'AWS::IAM::Group'
+    Properties:
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/ReadOnlyAccess
+  # Cloudformation bucket for CF templates
+  S3CloudformationBucket:
+    Type: "AWS::S3::Bucket"
+    DeletionPolicy: Delete
+    Properties:
+      AccessControl: PublicRead
+  S3CloudformationBucketPolicy:
+    Type: "AWS::S3::BucketPolicy"
+    Properties:
+      Bucket: !Ref S3CloudformationBucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Sid: "AllowPublicRead"
+            Effect: "Allow"
+            Principal:
+              AWS: "*"
+            Action: "s3:GetObject"
+            Resource: !Sub "arn:aws:s3:::${S3CloudformationBucket}/*"
+  # CF Service roles
+  CfServiceRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: "Allow"
+            Principal:
+              AWS:
+                - !GetAtt TravisUser.Arn
+            Action:
+              - "sts:AssumeRole"
+      Path: "/"
+  CfServicePolicy:
+    Type: "AWS::IAM::Policy"
+    Properties:
+      PolicyName: "CfService"
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: "Allow"
+            Action: "*"
+            Resource: "*"
+      Roles:
+        -
+          !Ref CfServiceRole
+Outputs:
+  TravisUser:
+    Value: !Ref TravisUser
+    Export:
+      Name: !Sub '${AWS::Region}-${AWS::StackName}-TravisUser'
+  TravisUserArn:
+    Value: !GetAtt TravisUser.Arn
+    Export:
+      Name: !Sub '${AWS::Region}-${AWS::StackName}-TravisUserArn'
+  TravisUserAccessKey:
+    Value: !Ref TravisUserAccessKey
+    Export:
+      Name: !Sub '${AWS::Region}-${AWS::StackName}-TravisUserAccessKey'
+  TravisUserSecretAccessKey:
+    Value: !GetAtt TravisUserAccessKey.SecretAccessKey
+    Export:
+      Name: !Sub '${AWS::Region}-${AWS::StackName}-TravisUserSecretAccessKey'
+  S3CloudformationBucket:
+    Value: !Ref S3CloudformationBucket
+    Export:
+      Name: !Sub '${AWS::Region}-${AWS::StackName}-CloudformationBucket'
+  CfServiceRoleArn:
+    Value: !GetAtt CfServiceRole.Arn
+    Export:
+      Name: !Sub '${AWS::Region}-${AWS::StackName}-CfServiceRoleArn'

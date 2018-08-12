@@ -1,0 +1,11 @@
+sudo: false
+language: python
+python: 3.5
+cache: pip
+fast_finish: true
+install:
+- ./setup_aws_cli.sh || travis_terminate 1
+- ./setup_sceptre.sh || travis_terminate 1
+script:
+- ./validate-templates.sh || travis_terminate 1
+- sceptre --var "profile=default" --var "region=us-east-1" launch-env prod

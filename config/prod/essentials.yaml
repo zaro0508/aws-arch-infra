@@ -1,0 +1,4 @@
+template_path: templates/essentials.yaml
+stack_name: essentials
+dependencies:
+  - bootstrap

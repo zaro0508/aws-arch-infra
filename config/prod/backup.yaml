@@ -1,0 +1,8 @@
+template_path: templates/backup.yaml
+stack_name: backup
+dependencies:
+  - essentials
+parameters:
+  EncryptBucket: "false"
+  EnableGlacierLifeCycle: "Enabled"
+  GlacierTransition: "1"
