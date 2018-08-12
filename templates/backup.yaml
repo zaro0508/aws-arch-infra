@@ -8,6 +8,13 @@ Parameters:
       - true
       - false
     Default: false
+  EnableVersioning:
+    Type: String
+    Description: Enabled to enable bucket versionsing, default is Disabled
+    AllowedValues:
+      - Enabled
+      - Disabled
+    Default: Disabled
   EnableGlacierLifeCycle:
     Type: String
     Description: Enabled to enable Glacier lifecycle rule, default is Disabled
@@ -22,7 +29,7 @@ Parameters:
   GlacierExpiration:
     Type: Number
     Description: Number of days (from creation) when objects are deleted from S3 and Glacier
-    Default: 365000
+    Default: 365
 Conditions:
   EnableEncryption: !Equals [!Ref EncryptBucket, true]
   DisableEncryption: !Not [!Condition EnableEncryption]
@@ -31,6 +38,8 @@ Resources:
     Type: "AWS::S3::Bucket"
     Condition: DisableEncryption
     Properties:
+      VersioningConfiguration:
+        Status: !Ref EnableVersioning
       LifecycleConfiguration:
         Rules:
         - Id: GlacierRule
@@ -43,10 +52,12 @@ Resources:
     Type: "AWS::S3::Bucket"
     Condition: EnableEncryption
     Properties:
+      VersioningConfiguration:
+        Status: !Ref EnableVersioning
       BucketEncryption:
         ServerSideEncryptionConfiguration:
           - ServerSideEncryptionByDefault:
-              SSEAlgorithm: AES256
+              SSEAlgorithm: aws:kms
       LifecycleConfiguration:
         Rules:
         - Id: GlacierRule

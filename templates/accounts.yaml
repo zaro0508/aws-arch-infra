@@ -10,10 +10,10 @@ Resources:
   # 1. Detach or remove the following user resources: login profile, attached
   #    MFA device, access-keys, ssh-keys, and policies.
   # 2. Detach the user from all groups.
-  ZaroUser:
+  Zaro0508User:
     Type: 'AWS::IAM::User'
     Properties:
-      UserName: zaro0508@sagebase.org
+      UserName: zaro0508@gmail.com
       Groups:
         - !Ref AllUsersGroup
         - !Ref DeveloperUsersGroup
@@ -37,7 +37,7 @@ Resources:
             Effect: "Allow"
             Principal:
               AWS:
-                - !GetAtt ZaroUser.Arn
+                - !GetAtt Zaro0508User.Arn
             Action:
               - "sts:AssumeRole"
       Path: "/"
