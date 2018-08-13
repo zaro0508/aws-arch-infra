@@ -10,11 +10,11 @@ Parameters:
     Default: false
   BucketVersioning:
     Type: String
-    Description: Enabled to enable bucket versionsing, default is Disabled
+    Description: Enabled to enable bucket versionsing, default is Suspended
     AllowedValues:
       - Enabled
-      - Disabled
-    Default: Disabled
+      - Suspended
+    Default: Suspended
   EnableGlacierLifeCycle:
     Type: String
     Description: Enabled to enable Glacier lifecycle rule, default is Disabled

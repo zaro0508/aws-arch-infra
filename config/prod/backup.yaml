@@ -4,6 +4,6 @@ dependencies:
   - essentials
 parameters:
   EncryptBucket: 'true'
-  BucketVersioning: 'Disabled'
+  BucketVersioning: 'Suspended'
   EnableGlacierLifeCycle: 'Enabled'
   GlacierTransition: '1'
