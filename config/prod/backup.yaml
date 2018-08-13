@@ -3,7 +3,7 @@ stack_name: backup
 dependencies:
   - essentials
 parameters:
-  EncryptBucket: "true"
-  EnableVersioning: "Enabled"
-  EnableGlacierLifeCycle: "Enabled"
-  GlacierTransition: "1"
+  EncryptBucket: 'true'
+  BucketVersioning: 'Enabled'
+  EnableGlacierLifeCycle: 'Enabled'
+  GlacierTransition: '1'
