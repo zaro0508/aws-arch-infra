@@ -26,7 +26,6 @@ Resources:
     Properties:
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/PowerUserAccess
-        - arn:aws:iam::aws:policy/IAMReadOnlyAccess
   AdminRole:
     Type: "AWS::IAM::Role"
     Properties:
