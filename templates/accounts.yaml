@@ -50,6 +50,18 @@ Resources:
             Effect: "Allow"
             Action: "organizations:*"
             Resource: "*"
+  BillingFullAccessPolicy:
+    Type: 'AWS::IAM::ManagedPolicy'
+    Properties:
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          -
+            Effect: "Allow"
+            Action:
+              - "ce:*"
+              - "aws-portal:*Billing"
+            Resource: "*"
   AdminRolePolicy:
     Type: "AWS::IAM::Policy"
     Properties:
@@ -76,6 +88,7 @@ Resources:
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/job-function/Billing
         - !Ref OrganizationsFullAccessPolicy
+        - !Ref BillingFullAccessPolicy
   # policy to enforce MFA
   EnforceMfaPolicy:
     Type: 'AWS::IAM::ManagedPolicy'
