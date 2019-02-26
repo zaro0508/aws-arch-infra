@@ -40,8 +40,6 @@ Resources:
             Action:
               - "sts:AssumeRole"
       Path: "/"
-      ManagedPolicyArns:
-        - !Ref AdminRolePolicy
   OrganizationsFullAccessPolicy:
     Type: 'AWS::IAM::ManagedPolicy'
     Properties:
