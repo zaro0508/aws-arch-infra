@@ -1,7 +1,7 @@
-template_path: templates/backup.yaml
+template_path: backup.yaml
 stack_name: backup
 dependencies:
-  - essentials
+  - prod/essentials.yaml
 parameters:
   EncryptBucket: 'true'
   BucketVersioning: 'Suspended'
