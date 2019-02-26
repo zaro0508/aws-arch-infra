@@ -1,2 +1,2 @@
-template_path: templates/bootstrap.yaml
+template_path: bootstrap.yaml
 stack_name: bootstrap
