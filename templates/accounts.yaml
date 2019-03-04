@@ -40,28 +40,6 @@ Resources:
             Action:
               - "sts:AssumeRole"
       Path: "/"
-  OrganizationsFullAccessPolicy:
-    Type: 'AWS::IAM::ManagedPolicy'
-    Properties:
-      PolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-          -
-            Effect: "Allow"
-            Action: "organizations:*"
-            Resource: "*"
-  BillingFullAccessPolicy:
-    Type: 'AWS::IAM::ManagedPolicy'
-    Properties:
-      PolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-          -
-            Effect: "Allow"
-            Action:
-              - "ce:*"
-              - "aws-portal:*Billing"
-            Resource: "*"
   AdminRolePolicy:
     Type: "AWS::IAM::Policy"
     Properties:
@@ -87,8 +65,7 @@ Resources:
     Properties:
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/job-function/Billing
-        - !Ref OrganizationsFullAccessPolicy
-        - !Ref BillingFullAccessPolicy
+        - arn:aws:iam::aws:policy/AWSOrganizationsFullAccess
   # policy to enforce MFA
   EnforceMfaPolicy:
     Type: 'AWS::IAM::ManagedPolicy'
@@ -196,3 +173,7 @@ Outputs:
     Value: !Ref EnforceMfaPolicy
     Export:
       Name: !Sub '${AWS::Region}-${AWS::StackName}-EnforceMfaPolicy'
+  EnforceMfaPolicy2:
+    Value: !Ref EnforceMfaPolicy
+    Export:
+      Name: !Sub '${AWS::Region}-${AWS::StackName}-EnforceMfaPolicy2'
