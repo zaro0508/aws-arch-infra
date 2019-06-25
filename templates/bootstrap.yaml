@@ -96,7 +96,3 @@ Outputs:
     Value: !GetAtt CfServiceRole.Arn
     Export:
       Name: !Sub '${AWS::Region}-${AWS::StackName}-CfServiceRoleArn'
-  CfServiceRoleArn2:
-    Value: !GetAtt CfServiceRole.Arn
-    Export:
-      Name: !Sub '${AWS::Region}-${AWS::StackName}-CfServiceRoleArn2'
