@@ -71,6 +71,65 @@ Resources:
       Roles:
         -
           !Ref CfServiceRole
+  # KMS Keys
+  AWSKmsInfraKey:
+    Type: "AWS::KMS::Key"
+    Properties:
+      Description: !Join
+        - '-'
+        - - !Ref AWS::StackName
+          - "InfraKey"
+      KeyPolicy:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Sid: "Allow administration of the key"
+            Effect: "Allow"
+            Principal:
+              AWS:
+                - !Join
+                  - ''
+                  - - 'arn:aws:iam::'
+                    - !Ref AWS::AccountId
+                    - ':root'
+                - !GetAtt CfServiceRole.Arn
+            Action:
+              - "kms:Create*"
+              - "kms:Describe*"
+              - "kms:Enable*"
+              - "kms:List*"
+              - "kms:Put*"
+              - "kms:Update*"
+              - "kms:Revoke*"
+              - "kms:Disable*"
+              - "kms:Get*"
+              - "kms:Delete*"
+              - "kms:ScheduleKeyDeletion"
+              - "kms:CancelKeyDeletion"
+            Resource: "*"
+          -
+            Sid: "Allow use of the key"
+            Effect: "Allow"
+            Principal:
+              AWS:
+                - !GetAtt CfServiceRole.Arn
+            Action:
+              - "kms:Encrypt"
+              - "kms:Decrypt"
+              - "kms:ReEncrypt*"
+              - "kms:GenerateDataKey*"
+              - "kms:DescribeKey"
+            Resource: "*"
+  AWSKmsInfraKeyAlias:
+    Type: AWS::KMS::Alias
+    Properties:
+      AliasName: !Join
+        - ''
+        - - 'alias/'
+          - !Ref AWS::StackName
+          - '/InfraKey'
+      TargetKeyId: !Ref AWSKmsInfraKey
+
 Outputs:
   TravisUser:
     Value: !Ref TravisUser
