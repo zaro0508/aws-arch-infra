@@ -1,9 +1,5 @@
 project_code: arch-solutions
 profile: {{ var.profile | default("default") }}
 region: {{ var.region | default("us-east-1") }}
-template_bucket_name: bootstrap-s3cloudformationbucket-1axpc8ubtolho
 template_key_prefix: {{ environment_variable.TRAVIS_BRANCH | default("testing") }}
 admincentral_cf_bucket: "bootstrap-awss3cloudformationbucket-19qromfd235z9"
-# Sender for notification hooks
-aws_account_name: arch-sandbox
-aws_account_email: aws.arch-sandbox@gmail.com

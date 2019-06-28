@@ -1,0 +1,4 @@
+template_bucket_name: bootstrap-s3cloudformationbucket-1axpc8ubtolho
+# Sender for notification hooks
+aws_account_name: arch-sandbox
+aws_account_email: aws.arch-sandbox@gmail.com

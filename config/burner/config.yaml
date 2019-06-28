@@ -1,0 +1,4 @@
+template_bucket_name: bootstrap-s3cloudformationbucket-20cah1orn2hx
+# Sender for notification hooks
+aws_account_name: archsolutions-burner
+aws_account_email: arch.solutions.burner@gmail.com
