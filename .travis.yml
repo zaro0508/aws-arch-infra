@@ -13,9 +13,7 @@ install:
   - pip install git+git://github.com/zaro0508/sceptre-date-resolver.git
 stages:
   - name: validate
-  - name: deploy-sandbox
-    if: branch = master AND type = push
-  - name: deploy-burner
+  - name: deploy
     if: branch = master AND type = push
 jobs:
   include:
@@ -23,11 +21,11 @@ jobs:
       script:
         - yamllint ./config ./templates
         - cfn-lint ./templates/**/*
-    - stage: deploy-sandbox
+    - stage: deploy
       script:
         - ./setup_aws_cli.sh sandbox || travis_terminate 1
         - sceptre launch sandbox --yes
-    - stage: deploy-burner
+    - stage: deploy
       script:
         - ./setup_aws_cli.sh burner || travis_terminate 1
         - sceptre launch burner --yes
