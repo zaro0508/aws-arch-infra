@@ -27,8 +27,7 @@ jobs:
       script:
         - ./setup_aws_cli.sh sandbox || travis_terminate 1
         - sceptre launch sandbox --yes
-        -
     - stage: deploy-burner
       script:
-        - ./setup_aws_cli.sh sandbox || travis_terminate 1
+        - ./setup_aws_cli.sh burner || travis_terminate 1
         - sceptre launch burner --yes
