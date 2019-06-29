@@ -1,7 +1,7 @@
 template_path: accounts.yaml
 stack_name: accounts
 dependencies:
-  - sandbox/essentials.yaml
+  - bla/essentials.yaml
 parameters:
   InitNewUserPassword: !ssm /infra/InitNewUserPassword
 
