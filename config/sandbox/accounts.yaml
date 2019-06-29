@@ -3,5 +3,5 @@ stack_name: accounts
 dependencies:
   - sandbox/essentials.yaml
 parameters:
-  InitNewUserPassword: !ssm /infra/InitNewUserPassword
+  InitNewUserPassword: !ssm /infra/bla
 
