@@ -1,7 +1,7 @@
 #!/bin/bash
 set -ex
 
-$ACCOUNT_NAME=$1
+ACCOUNT_NAME="$1"
 
 # some projects deploy to multiple AWS accounts, dev/stage/prod/etc..
 # we manage this by using git branches, travis vars and double interpolation
