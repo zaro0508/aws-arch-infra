@@ -23,9 +23,11 @@ jobs:
         - cfn-lint ./templates/**/*
     - stage: deploy
       script:
-        - ./setup_aws_cli.sh sandbox || travis_terminate 1
-        - sceptre launch sandbox --yes
+        - export ACCOUNT="sandbox"
+        - ./setup_aws_cli.sh $ACCOUNT || travis_terminate 1
+        - sceptre launch $ACCOUNT --yes
     - stage: deploy
       script:
-        - ./setup_aws_cli.sh burner || travis_terminate 1
-        - sceptre launch burner --yes
+        - export ACCOUNT="burner"
+        - ./setup_aws_cli.sh $ACCOUNT || travis_terminate 1
+        - sceptre launch $ACCOUNT --yes
