@@ -4,4 +4,3 @@ dependencies:
   - burner/essentials.yaml
 parameters:
   InitNewUserPassword: !ssm /infra/InitNewUserPassword
-

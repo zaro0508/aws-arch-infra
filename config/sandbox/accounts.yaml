@@ -4,4 +4,3 @@ dependencies:
   - sandbox/essentials.yaml
 parameters:
   InitNewUserPassword: !ssm /infra/InitNewUserPassword
-

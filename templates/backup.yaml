@@ -42,12 +42,12 @@ Resources:
         Status: !Ref BucketVersioning
       LifecycleConfiguration:
         Rules:
-        - Id: GlacierRule
-          Status: !Ref EnableGlacierLifeCycle
-          ExpirationInDays: !Ref GlacierExpiration
-          Transitions:
-            - TransitionInDays: !Ref GlacierTransition
-              StorageClass: Glacier
+          - Id: GlacierRule
+            Status: !Ref EnableGlacierLifeCycle
+            ExpirationInDays: !Ref GlacierExpiration
+            Transitions:
+              - TransitionInDays: !Ref GlacierTransition
+                StorageClass: Glacier
   EncryptedBackupBucket:
     Type: "AWS::S3::Bucket"
     Condition: EnableEncryption
@@ -60,12 +60,12 @@ Resources:
               SSEAlgorithm: aws:kms
       LifecycleConfiguration:
         Rules:
-        - Id: GlacierRule
-          Status: !Ref EnableGlacierLifeCycle
-          ExpirationInDays: !Ref GlacierExpiration
-          Transitions:
-            - TransitionInDays: !Ref GlacierTransition
-              StorageClass: Glacier
+          - Id: GlacierRule
+            Status: !Ref EnableGlacierLifeCycle
+            ExpirationInDays: !Ref GlacierExpiration
+            Transitions:
+              - TransitionInDays: !Ref GlacierTransition
+                StorageClass: Glacier
 Outputs:
   BackupBucket:
     Condition: DisableEncryption

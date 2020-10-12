@@ -59,7 +59,6 @@ Resources:
     Properties:
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/ReadOnlyAccess
-        - !Ref EnforceMfaPolicy
   BillingManagersGroup:
     Type: 'AWS::IAM::Group'
     Properties:
