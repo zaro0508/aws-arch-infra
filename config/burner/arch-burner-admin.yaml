@@ -1,0 +1,12 @@
+template_path: "jumpcloud-idp.yaml"
+stack_name: "arch-burner-admin"
+stack_tags:
+  Project: "Infrastructure"
+parameters:
+  SamlProviderName: "arch-burner-admin"
+  SamlProviderPolicyArns:
+    - "arn:aws:iam::aws:policy/AdministratorAccess"
+    - "arn:aws:iam::aws:policy/job-function/Billing"
+  Metadata: !file_contents idp/jumpcloud/arch-burner-admin.xml
+dependencies:
+  - "burner/cfn-cr-saml-provider.yaml"
