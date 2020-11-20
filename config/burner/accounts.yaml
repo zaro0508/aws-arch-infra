@@ -1,4 +1,0 @@
-template_path: accounts.yaml
-stack_name: accounts
-dependencies:
-  - burner/essentials.yaml
