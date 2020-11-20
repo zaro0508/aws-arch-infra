@@ -9,4 +9,4 @@ parameters:
     - "arn:aws:iam::aws:policy/job-function/Billing"
   Metadata: !file_contents idp/jumpcloud/arch-sandbox-admin.xml
 dependencies:
-  - "burner/cfn-cr-saml-provider.yaml"
+  - "sandbox/cfn-cr-saml-provider.yaml"
