@@ -1,8 +1,6 @@
-sudo: false
 language: python
-python: 3.6
+python: 3.7
 cache: pip
-fast_finish: true
 branches:
   only:
   - master
@@ -14,18 +12,21 @@ stages:
   - name: deploy
     if: branch = master AND type = push
 jobs:
+  fast_finish: true
   include:
     - stage: validate
       script:
         - yamllint ./config ./templates
         - cfn-lint ./templates/**/*
     - stage: deploy
+      name: "burner"
       script:
-        - export ACCOUNT="sandbox"
+        - export ACCOUNT="burner"
         - ./setup_aws_cli.sh $ACCOUNT || travis_terminate 1
         - sceptre launch $ACCOUNT --yes
     - stage: deploy
+      name: "sandbox"
       script:
-        - export ACCOUNT="burner"
+        - export ACCOUNT="sandbox"
         - ./setup_aws_cli.sh $ACCOUNT || travis_terminate 1
         - sceptre launch $ACCOUNT --yes
