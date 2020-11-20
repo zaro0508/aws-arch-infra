@@ -103,7 +103,11 @@ venv.bak/
 # mypy
 .mypy_cache/
 
+# pycharm
 .idea
+
+# MAC stuff
 .DS_Store
 
+# sceptre
 /templates/remote
