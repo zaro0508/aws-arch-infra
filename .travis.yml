@@ -5,8 +5,7 @@ branches:
   only:
   - master
 install:
-  - pip install yamllint cfn-lint
-  - pip install sceptre sceptre-ssm-resolver sceptre-date-resolver
+  - pip install pre-commit sceptre
 stages:
   - name: validate
   - name: deploy
@@ -16,8 +15,7 @@ jobs:
   include:
     - stage: validate
       script:
-        - yamllint ./config ./templates
-        - cfn-lint ./templates/**/*
+        - pre-commit run --all-files
     - stage: deploy
       name: "organizations"
       script:
