@@ -1,0 +1,4 @@
+template_bucket_name: bootstrap-s3cloudformationbucket-1qzseos6586oi
+# Sender for notification hooks
+aws_account_name: archsolutions-organizations
+aws_account_email: arch.solutions.aws.organizations@gmail.com

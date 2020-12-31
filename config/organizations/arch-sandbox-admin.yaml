@@ -1,0 +1,12 @@
+template_path: "jumpcloud-idp.yaml"
+stack_name: "arch-organizations-admin"
+stack_tags:
+  Project: "Infrastructure"
+parameters:
+  SamlProviderName: "arch-organizations-admin"
+  SamlProviderPolicyArns:
+    - "arn:aws:iam::aws:policy/AdministratorAccess"
+    - "arn:aws:iam::aws:policy/job-function/Billing"
+  Metadata: !file_contents idp/jumpcloud/arch-organizations-admin.xml
+dependencies:
+  - "organizations/cfn-cr-saml-provider.yaml"
