@@ -19,6 +19,12 @@ jobs:
         - yamllint ./config ./templates
         - cfn-lint ./templates/**/*
     - stage: deploy
+      name: "organizations"
+      script:
+        - export ACCOUNT="organizations"
+        - ./setup_aws_cli.sh $ACCOUNT || travis_terminate 1
+        - sceptre launch $ACCOUNT --yes
+    - stage: deploy
       name: "burner"
       script:
         - export ACCOUNT="burner"
@@ -28,11 +34,5 @@ jobs:
       name: "sandbox"
       script:
         - export ACCOUNT="sandbox"
-        - ./setup_aws_cli.sh $ACCOUNT || travis_terminate 1
-        - sceptre launch $ACCOUNT --yes
-    - stage: deploy
-      name: "organizations"
-      script:
-        - export ACCOUNT="organizations"
         - ./setup_aws_cli.sh $ACCOUNT || travis_terminate 1
         - sceptre launch $ACCOUNT --yes
