@@ -21,36 +21,12 @@ Organization:
       ServiceControlPolicies:
         - !Ref RestrictUnusedRegionsSCP
 
-  BurnerAccount:
-    Type: OC::ORG::Account
-    Properties:
-      RootEmail: arch.solutions.burner@gmail.com
-      AccountName: org-archsolutions-burner
-      AccountId: '430215734166'
-      Alias: org-archsolutions-burner
-      Tags:
-        budget-alarm-threshold: '20'
-        account-owner-email: zaro0508@gmail.com
-
-  SandboxAccount:
-    Type: OC::ORG::Account
-    Properties:
-      RootEmail: arch-solutions-aws-sandbox@gmail.com
-      AccountName: org-archsolutions-sandbox
-      AccountId: '968106938717'
-      Alias: org-archsolutions-sandbox
-      Tags:
-        budget-alarm-threshold: '20'
-        account-owner-email: zaro0508@gmail.com
-
   DevelopmentOU:
     Type: OC::ORG::OrganizationalUnit
     Properties:
       OrganizationalUnitName: development
-      Accounts:
-        - !Ref BurnerAccount
-        - !Ref SandboxAccount
 
+  # https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps_examples.html#examples_general
   RestrictUnusedRegionsSCP:
     Type: OC::ORG::ServiceControlPolicy
     Properties:
@@ -62,7 +38,45 @@ Organization:
           - Sid: DenyUnsupportedRegions
             Effect: Deny
             NotAction:
-              - '*'
+              - "a4b:*"
+              - "acm:*"
+              - "aws-marketplace-management:*"
+              - "aws-marketplace:*"
+              - "aws-portal:*"
+              - "awsbillingconsole:*"
+              - "budgets:*"
+              - "ce:*"
+              - "chime:*"
+              - "cloudfront:*"
+              - "config:*"
+              - "cur:*"
+              - "directconnect:*"
+              - "ec2:DescribeRegions"
+              - "ec2:DescribeTransitGateways"
+              - "ec2:DescribeVpnGateways"
+              - "fms:*"
+              - "globalaccelerator:*"
+              - "health:*"
+              - "iam:*"
+              - "importexport:*"
+              - "kms:*"
+              - "mobileanalytics:*"
+              - "networkmanager:*"
+              - "organizations:*"
+              - "pricing:*"
+              - "route53:*"
+              - "route53domains:*"
+              - "s3:GetAccountPublic*"
+              - "s3:ListAllMyBuckets"
+              - "s3:PutAccountPublic*"
+              - "shield:*"
+              - "sts:*"
+              - "support:*"
+              - "trustedadvisor:*"
+              - "waf-regional:*"
+              - "waf:*"
+              - "wafv2:*"
+              - "wellarchitected:*"
             Resource: '*'
             Condition:
               StringNotEquals:
