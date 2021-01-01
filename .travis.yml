@@ -6,6 +6,7 @@ branches:
   - master
 install:
   - pip install pre-commit sceptre
+  - npm install -g aws-organization-formation
 stages:
   - name: validate
   - name: deploy
@@ -21,6 +22,7 @@ jobs:
       script:
         - export ACCOUNT="organizations"
         - ./setup_aws_cli.sh $ACCOUNT || travis_terminate 1
+        - org-formation update org-formation/organization.yml --verbose
         - sceptre launch $ACCOUNT --yes
     - stage: deploy
       name: "burner"
