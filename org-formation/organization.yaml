@@ -6,6 +6,7 @@ Organization:
     Type: OC::ORG::MasterAccount
     Properties:
       AccountName: org-archsolutions-organizations
+      Alias: org-archsolutions-organizations
       AccountId: '364599566324'
       RootEmail: arch.solutions.aws.organizations@gmail.com
       PasswordPolicy: !Ref PasswordPolicy
@@ -26,7 +27,7 @@ Organization:
       AccountName: org-archsolutions-burner
       AccountId: '430215734166'
       RootEmail: arch.solutions.burner@gmail.com
-      Alias: archsolutions-burner
+      Alias: org-archsolutions-burner
       Tags:
         budget-alarm-threshold: '20'
         account-owner-email: zaro0508@gmail.com
@@ -37,7 +38,7 @@ Organization:
       AccountName: org-archsolutions-sandbox
       AccountId: '968106938717'
       RootEmail: arch.solutions.aws.sandbox@gmail.com
-      Alias: archsolutions-sandbox
+      Alias: org-archsolutions-sandbox
       Tags:
         budget-alarm-threshold: '20'
         account-owner-email: zaro0508@gmail.com
