@@ -5,8 +5,8 @@ Organization:
   MasterAccount:
     Type: OC::ORG::MasterAccount
     Properties:
-      AccountName: archsolutions-organizations
-      Alias: archsolutions-organizations
+      AccountName: org-archsolutions-organizations
+      Alias: org-archsolutions-organizations
       AccountId: '364599566324'
       RootEmail: arch.solutions.aws.organizations@gmail.com
       PasswordPolicy: !Ref PasswordPolicy
@@ -21,10 +21,35 @@ Organization:
       ServiceControlPolicies:
         - !Ref RestrictUnusedRegionsSCP
 
+  BurnerAccount:
+    Type: OC::ORG::Account
+    Properties:
+      RootEmail: arch.solutions.burner@gmail.com
+      AccountName: org-archsolutions-burner
+      AccountId: '430215734166'
+      Alias: org-archsolutions-burner
+      Tags:
+        budget-alarm-threshold: '20'
+        account-owner-email: zaro0508@gmail.com
+
+  SandboxAccount:
+    Type: OC::ORG::Account
+    Properties:
+      RootEmail: arch.solutions.aws.sandbox@gmail.com
+      AccountName: org-archsolutions-sandbox
+      AccountId: '968106938717'
+      Alias: org-archsolutions-sandbox
+      Tags:
+        budget-alarm-threshold: '20'
+        account-owner-email: zaro0508@gmail.com
+
   DevelopmentOU:
     Type: OC::ORG::OrganizationalUnit
     Properties:
       OrganizationalUnitName: development
+      Accounts:
+        - !Ref BurnerAccount
+        - !Ref SandboxAccount
 
   # https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps_examples.html#examples_general
   RestrictUnusedRegionsSCP:

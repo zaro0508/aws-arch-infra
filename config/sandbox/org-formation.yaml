@@ -1,0 +1,6 @@
+template_path: "org-formation.yaml"
+stack_name: "org-formation"
+stack_tags:
+  Project: "Infrastructure"
+parameters:
+  masterAccountId: "364599566324"
