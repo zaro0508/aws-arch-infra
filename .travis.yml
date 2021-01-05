@@ -23,7 +23,7 @@ jobs:
         - export ACCOUNT="organizations"
         - ./setup_aws_cli.sh $ACCOUNT || travis_terminate 1
         - sceptre launch $ACCOUNT --yes
-        - org-formation update org-formation/organization.yml --verbose
+        - org-formation update org-formation/organization.yaml --verbose
     - stage: deploy
       name: "burner"
       script:
