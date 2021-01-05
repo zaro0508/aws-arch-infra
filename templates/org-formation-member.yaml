@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: 'create resources for org-formation'
+Description: 'create resources for org-formation member accounts'
 
 Parameters:
 

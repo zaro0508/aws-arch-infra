@@ -1,5 +1,5 @@
-template_path: "org-formation.yaml"
-stack_name: "org-formation"
+template_path: "org-formation-member.yaml"
+stack_name: "org-formation-member"
 stack_tags:
   Project: "Infrastructure"
 parameters:

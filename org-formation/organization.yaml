@@ -9,7 +9,6 @@ Organization:
       Alias: org-archsolutions-organizations
       AccountId: '364599566324'
       RootEmail: arch.solutions.aws.organizations@gmail.com
-      PasswordPolicy: !Ref PasswordPolicy
       Tags:
         budget-alarm-threshold: '100'
         account-owner-email: zaro0508@gmail.com
@@ -107,15 +106,3 @@ Organization:
               StringNotEquals:
                 'aws:RequestedRegion':
                   - us-east-1
-
-  PasswordPolicy:
-    Type: OC::ORG::PasswordPolicy
-    Properties:
-      MaxPasswordAge: 720
-      MinimumPasswordLength: 12
-      RequireLowercaseCharacters: true
-      RequireNumbers: true
-      RequireSymbols: true
-      RequireUppercaseCharacters: true
-      PasswordReusePrevention: 5
-      AllowUsersToChangePassword: false
