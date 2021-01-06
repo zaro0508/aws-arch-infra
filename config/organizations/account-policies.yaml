@@ -1,4 +1,0 @@
-template_path: "account-policies.yaml"
-stack_name: "account-policies"
-stack_tags:
-  Project: "Infrastructure"
