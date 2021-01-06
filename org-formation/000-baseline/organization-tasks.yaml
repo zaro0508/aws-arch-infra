@@ -11,7 +11,7 @@ CommunityIamPasswordPolicyRP:
 
 PasswordPolicy:
   Type: update-stacks
-  Template: ./password-policy.yml
+  Template: ./password-policy.yaml
   DependsOn: CommunityIamPasswordPolicyRP
   StackName: baseline-password-policy
   MaxConcurrentStacks: 10
