@@ -25,7 +25,7 @@ OrganizationUpdate:
 
 Baseline:
   Type: include
-  Path: ./000-baseline/organization-tasks.yml
+  Path: ./000-baseline/organization-tasks.yaml
 
 # # this feature will depend on the OrganizationBuild task.
 # MyFeature:
