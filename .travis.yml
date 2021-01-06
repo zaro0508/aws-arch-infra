@@ -22,8 +22,8 @@ jobs:
       script:
         - export ACCOUNT="organizations"
         - ./setup_aws_cli.sh $ACCOUNT || travis_terminate 1
-        - sceptre launch $ACCOUNT --yes
         - org-formation perform-tasks org-formation/organization-tasks.yaml --perform-cleanup --verbose --print-stack
+        - sceptre launch $ACCOUNT --yes
     - stage: deploy
       name: "burner"
       script:
