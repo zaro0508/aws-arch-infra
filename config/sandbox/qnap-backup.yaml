@@ -1,0 +1,10 @@
+template_path: backup.yaml
+stack_name: qnap-backup
+dependencies:
+  - sandbox/essentials.yaml
+parameters:
+  EncryptBucket: 'true'
+  BucketVersioning: 'Suspended'
+  EnableGlacierLifeCycle: 'Disabled'
+  GlacierTransition: '1'
+  GlacierExpiration: '30'
